@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Selfitness.MVC.Resources {
+namespace Selfitness.MVC.Resource {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Selfitness.MVC.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Selfitness.MVC.Resources.GeneralResource", typeof(GeneralResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Selfitness.MVC.Resource.GeneralResource", typeof(GeneralResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,47 @@ namespace Selfitness.MVC.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 帳號 的當地語系化字串。
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 Selfitness 的當地語系化字串。
         /// </summary>
         public static string ApplicationName {
             get {
                 return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 登入 的當地語系化字串。
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 密碼 的當地語系化字串。
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 註冊 的當地語系化字串。
+        /// </summary>
+        public static string Registe {
+            get {
+                return ResourceManager.GetString("Registe", resourceCulture);
             }
         }
     }

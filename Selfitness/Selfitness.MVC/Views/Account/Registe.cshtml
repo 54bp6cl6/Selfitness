@@ -1,0 +1,59 @@
+﻿@using Selfitness.MVC.Models.Account
+@using Selfitness.MVC.Resource
+
+@{
+    ViewData["title"] = GeneralResource.Registe;
+}
+
+<form id="registe">
+    <div>
+        <label for="account">@GeneralResource.Account</label>
+        <input id="account" />
+    </div>
+    <div>
+        <label for="password">@GeneralResource.Password</label>
+        <input id="password" type="password" />
+    </div>
+    <button type="submit">@GeneralResource.Registe</button>
+    <a href="/Account/Login">@GeneralResource.Login</a>
+</form>
+
+<script>
+    var accountRegExp = new RegExp("^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$");
+    var passwordRegExp = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,30}$");
+
+    document.getElementById("registe")
+        .addEventListener("submit", event => {
+            event.preventDefault();
+
+            if (!accountRegExp.test(event.target["account"].value)) {
+                Swal.fire("帳號不符合規定", "帳號必須滿足以下條件...", "warning");
+                return false;
+            }
+
+            if (!passwordRegExp.test(event.target["password"].value)) {
+                Swal.fire("密碼不符合規定", "密碼必須滿足以下條件...", "warning");
+                return false;
+            }
+
+            ajaxSubmit(event.target);
+        });
+
+    function ajaxSubmit(form) {
+        axios.post('/Account/Registe', {
+            account: form["account"].value,
+            password: form["password"].value
+        })
+        .then(function(response) {
+            if (response.data.success) {
+                window.location = "/";
+            }
+            else {
+                Swal.fire("註冊失敗", response.data.message, "error");
+            }
+        })
+        .catch(function(error) {
+            Swal.fire("錯誤", "系統發生錯誤，請稍後再試", "error");
+        })
+    }
+</script>

@@ -1,0 +1,46 @@
+﻿@using Selfitness.MVC.Models.Account
+@using Selfitness.MVC.Resource
+
+@{
+    ViewData["title"] = GeneralResource.Login;
+}
+
+<form id="login">
+    <div>
+        <label for="account">@GeneralResource.Account</label>
+        <input id="account" />
+    </div>
+    <div>
+        <label for="password">@GeneralResource.Password</label>
+        <input id="password" type="password" />
+    </div>
+    <button type="submit">@GeneralResource.Login</button>
+    <a href="/Account/Registe">@GeneralResource.Registe</a>
+</form>
+
+<script>
+    document.getElementById("login")
+        .addEventListener("submit", event => {
+            event.preventDefault();
+            ajaxSubmit(event.target);
+        });
+
+    function ajaxSubmit(form) {
+        axios.post('/Account/Login', {
+            account: form["account"].value,
+            password: form["password"].value
+        })
+        .then(function(response) {
+            console.log(response);
+            if (response.data.success) {
+                window.location = "/";
+            }
+            else {
+                Swal.fire("登入失敗", response.data.message, "error");
+            }
+        })
+        .catch(function(error) {
+            Swal.fire("錯誤", "系統發生錯誤，請稍後再試", "error");
+        })
+    }
+</script>
