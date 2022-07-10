@@ -5,17 +5,23 @@
     ViewData["title"] = GeneralResource.Login;
 }
 
-<form id="login">
-    <div>
-        <label for="account">@GeneralResource.Account</label>
-        <input id="account" />
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<form id="login" class="login-form">
+    <h1>@GeneralResource.Login</h1>
+    <div class="content">
+        <div class="input-field">
+            <input id="account" placeholder="@GeneralResource.Account"/>
+        </div>
+        <div class="input-field">
+            <input id="password" type="password" placeholder="@GeneralResource.Password"/>
+        </div>
     </div>
-    <div>
-        <label for="password">@GeneralResource.Password</label>
-        <input id="password" type="password" />
+    <div class="action">
+        <a class="button" href="/Account/Registe">@GeneralResource.Registe</a>
+        <button type="submit" class="button">@GeneralResource.Login</button>
     </div>
-    <button type="submit">@GeneralResource.Login</button>
-    <a href="/Account/Registe">@GeneralResource.Registe</a>
+    
 </form>
 
 <script>
@@ -30,17 +36,17 @@
             account: form["account"].value,
             password: form["password"].value
         })
-        .then(function(response) {
-            console.log(response);
-            if (response.data.success) {
-                window.location = "/";
-            }
-            else {
-                Swal.fire("登入失敗", response.data.message, "error");
-            }
-        })
-        .catch(function(error) {
-            Swal.fire("錯誤", "系統發生錯誤，請稍後再試", "error");
-        })
+            .then(function(response) {
+                console.log(response);
+                if (response.data.success) {
+                    window.location = "/";
+                }
+                else {
+                    Swal.fire("登入失敗", response.data.message, "error");
+                }
+            })
+            .catch(function(error) {
+                Swal.fire("錯誤", "系統發生錯誤，請稍後再試", "error");
+            })
     }
 </script>

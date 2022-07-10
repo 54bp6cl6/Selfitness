@@ -5,17 +5,22 @@
     ViewData["title"] = GeneralResource.Registe;
 }
 
-<form id="registe">
-    <div>
-        <label for="account">@GeneralResource.Account</label>
-        <input id="account" />
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<form id="registe" class="login-form">
+    <h1>@GeneralResource.Registe</h1>
+    <div class="content">
+        <div class="input-field">
+            <input id="account" placeholder="@GeneralResource.Account"/>
+        </div>
+        <div class="input-field">
+            <input id="password" type="password" placeholder="@GeneralResource.Password"/>
+        </div>
     </div>
-    <div>
-        <label for="password">@GeneralResource.Password</label>
-        <input id="password" type="password" />
+    <div class="action">
+        <a href="/Account/Login" class="button">@GeneralResource.Login</a>
+        <button type="submit" class="button">@GeneralResource.Registe</button>
     </div>
-    <button type="submit">@GeneralResource.Registe</button>
-    <a href="/Account/Login">@GeneralResource.Login</a>
 </form>
 
 <script>
